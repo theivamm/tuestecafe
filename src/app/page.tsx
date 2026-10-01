@@ -1,69 +1,104 @@
-import Image from "next/image";
+/* eslint-disable @next/next/no-img-element */
+import { MenuSection } from "@/components/menu-section";
+import { DELIVERIES, SITE } from "@/data/site";
+
+const VALUES = [
+  ["Tueste propio", "Molemos el grano el día que lo tomás."],
+  ["Horneado del día", "Laminados y pastelería recién hechos."],
+  ["Sin TACC", "Opciones sin gluten en casi toda la carta."],
+  ["Pets bienvenidos", "La barra los adopta a la primera."],
+  ["A tu casa", "Rappi y Mercado Delivery."],
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+    <>
+      <header className="top" id="top">
+        <a href="#top">
+          <img src="/img/logo.png" alt={SITE.name} />
+        </a>
+        <nav>
+          <a href="#barra">La barra</a>
+          <a href="#menu">Menú</a>
+          <a href="#visita">Visitanos</a>
+        </nav>
+      </header>
+
+      <main>
+        <section className="wrap hero">
+          <div>
+            <p className="eyebrow">
+              {SITE.neighborhood.split(",")[0]} · {SITE.hours.days} {SITE.hours.time}
+            </p>
+            <h1 className="serif">{SITE.claim}.</h1>
+            <p className="lead">
+              Primer café de la cuadra. Tueste propio, brunch recién hecho y un lugar para quedarse un rato largo, con tu
+              mejor amigo.
+            </p>
+            <div className="btns">
+              <a className="btn solid" href="#menu">Ver el menú →</a>
+              <a className="btn" href={SITE.mapsShortUrl} target="_blank" rel="noreferrer">Cómo llegar</a>
+            </div>
+          </div>
+          <div className="hero-img">
+            <img className="main" src="/img/hero-02.jpg" alt="Barra de Tueste" />
+            <img className="sub" src="/img/hero-04.jpg" alt="Café servido" />
+          </div>
+        </section>
+
+        <section className="values">
+          <div className="wrap">
+            {VALUES.map(([t, c]) => (
+              <div key={t}>
+                <b>{t}</b>
+                <span>{c}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section id="barra" className="wrap barra">
+          <div className="pics">
+            <img src="/img/espresso-03.jpg" alt="Espresso" />
+            <img src="/img/coffee-08.jpg" alt="Café filtrado" />
+          </div>
+          <div>
+            <p className="eyebrow">La barra</p>
+            <h2 className="serif">Specialties, sin apuro.</h2>
+            <p className="t">
+              Tueste propio en casa. Cada lote se muele según el método que vas a usar: V60, Chemex o Aeropress. En barra
+              te preguntamos cómo lo tomás y te armamos el café como corresponde.
+            </p>
+          </div>
+        </section>
+
+        <MenuSection />
+
+        <section id="visita" className="wrap visita">
+          <div>
+            <h2 className="serif">Pasá por Caballito.</h2>
+            <p style={{ margin: 0, color: "rgba(239,232,216,.78)", lineHeight: 1.6 }}>Con vos y tu perro. {SITE.tagline.split(" en ")[0]}.</p>
+          </div>
+          <div className="col">
+            <div><small>Dirección</small>{SITE.address.street}, {SITE.address.postalCode} {SITE.address.city}</div>
+            <div><small>Horario</small>{SITE.hours.days} · {SITE.hours.time}</div>
+          </div>
+          <div className="col">
+            <div><small>Envíos</small>{DELIVERIES.map((d) => d.name).join(" · ")}</div>
+            <div>
+              <small>Seguinos</small>
+              <a href={SITE.instagramUrl} target="_blank" rel="noreferrer" style={{ textDecoration: "underline" }}>@tueste.cafe</a>
+            </div>
+          </div>
+        </section>
       </main>
-    </div>
+
+      <footer className="foot">
+        <div className="wrap">
+          <span><img src="/img/logo.png" alt="" />{SITE.name}</span>
+          <span>{SITE.neighborhood}</span>
+        </div>
+      </footer>
+    </>
   );
 }
