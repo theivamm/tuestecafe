@@ -61,9 +61,9 @@ const jsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es-AR" className={`${serif.variable} ${sans.variable} ${mono.variable}`}>
+    <html lang="es-AR" data-theme="dark" suppressHydrationWarning className={`${serif.variable} ${sans.variable} ${mono.variable}`}>
       <body>
-        <div className="aurora" aria-hidden="true"><i /><i /><i /><i /></div>
+        <script dangerouslySetInnerHTML={{ __html: `try{var t=localStorage.getItem("tueste-theme");if(t)document.documentElement.dataset.theme=t}catch(e){}` }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         {children}
       </body>

@@ -91,7 +91,7 @@ export default function Home() {
         <section id="visita" className="wrap visita">
           <div className="rv">
             <h2 className="serif"><SplitText text="Pasá por " /><SplitText text="Caballito." grad /></h2>
-            <p style={{ margin: 0, color: "rgba(239,232,216,.78)", lineHeight: 1.6 }}>Con vos y tu perro. {SITE.tagline.split(" en ")[0]}.</p>
+            <p className="s">Con vos y tu perro. {SITE.tagline.split(" en ")[0]}.</p>
           </div>
           <div className="col rv">
             <div><small>Dirección</small>{SITE.address.street}, {SITE.address.postalCode} {SITE.address.city}</div>

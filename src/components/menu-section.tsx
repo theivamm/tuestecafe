@@ -47,15 +47,6 @@ function hl(text: string, words: string[]): ReactNode {
 export function MenuSection() {
   const [q] = useSearch();
   const [view, setView] = useState<View>("simple");
-  const [dark, setDark] = useState(false);
-  useEffect(() => {
-    if (localStorage.getItem("tueste-menu-theme") === "dark") setDark(true);
-  }, []);
-  const toggleTheme = () =>
-    setDark((d) => {
-      localStorage.setItem("tueste-menu-theme", d ? "light" : "dark");
-      return !d;
-    });
   const results = useRef<HTMLDivElement>(null);
   const words = useMemo(() => norm(q).split(/\s+/).filter(Boolean), [q]);
 
@@ -87,11 +78,11 @@ export function MenuSection() {
   const count = sections.reduce((n, c) => n + c.items.length, 0);
 
   return (
-    <section id="menu" className={`menu${dark ? " dark" : ""}`}>
+    <section id="menu" className="menu">
       <div className="wrap">
         <div className="menu-head rv">
           <p className="eyebrow">Carta completa</p>
-          <h2 className="serif"><SplitText text="Menú" grad dark /></h2>
+          <h2 className="serif"><SplitText text="Menú" grad /></h2>
           <p className="legend">
             <span>V vegano</span>
             <span>T sin TACC</span>
@@ -108,14 +99,6 @@ export function MenuSection() {
               </button>
             ))}
           </div>
-          <button type="button" className="mode" onClick={toggleTheme} aria-pressed={dark} aria-label={dark ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}>
-            {dark ? (
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" /></svg>
-            ) : (
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" /></svg>
-            )}
-            {dark ? "Claro" : "Oscuro"}
-          </button>
           {words.length > 0 && (
             <span className="count" aria-live="polite">
               {count} {count === 1 ? "resultado" : "resultados"}
@@ -123,14 +106,16 @@ export function MenuSection() {
           )}
         </div>
 
-        <div className="catnav">
+      </div>
+        <div className="catnav"><div className="wrap catnav-in">
           {sections.map((c) => (
             <a key={c.id} href={`#cat-${c.id}`}>
               {c.short}
             </a>
           ))}
-        </div>
+        </div></div>
 
+      <div className="wrap">
         <div ref={results}>
           {sections.map((c) => (
             <div key={c.id} id={`cat-${c.id}`} className="cat">
