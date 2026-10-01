@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { MenuSection } from "@/components/menu-section";
+import { SplitText } from "@/components/split-text";
 import { Reveal } from "@/components/reveal";
 import { TopBar } from "@/components/top-bar";
 import { DELIVERIES, SITE } from "@/data/site";
@@ -33,7 +34,8 @@ export default function Home() {
               {SITE.neighborhood.split(",")[0]} · {SITE.hours.days} {SITE.hours.time}
             </p>
             <h1 className="serif">
-              {words.join(" ")} <span className="grad">{last}.</span>
+              <SplitText text={words.join(" ") + " "} />
+              <SplitText text={last + "."} grad />
             </h1>
             <p className="lead">
               Primer café de la cuadra. Tueste propio, brunch recién hecho y un lugar para quedarse un rato largo, con tu
@@ -45,7 +47,6 @@ export default function Home() {
             </div>
           </div>
           <div className="hero-img rv">
-            <div className="glow" />
             <img className="main" src="/img/hero-02.jpg" alt="Barra de Tueste" />
             <img className="sub" src="/img/hero-04.jpg" alt="Café servido" />
           </div>
@@ -77,7 +78,7 @@ export default function Home() {
           </div>
           <div className="rv">
             <p className="eyebrow">La barra</p>
-            <h2 className="serif">Specialties, <span className="grad">sin apuro.</span></h2>
+            <h2 className="serif"><SplitText text="Specialties, " /><SplitText text="sin apuro." grad /></h2>
             <p className="t">
               Tueste propio en casa. Cada lote se muele según el método que vas a usar: V60, Chemex o Aeropress. En barra
               te preguntamos cómo lo tomás y te armamos el café como corresponde.
@@ -89,7 +90,7 @@ export default function Home() {
 
         <section id="visita" className="wrap visita">
           <div className="rv">
-            <h2 className="serif">Pasá por <span className="grad">Caballito.</span></h2>
+            <h2 className="serif"><SplitText text="Pasá por " /><SplitText text="Caballito." grad /></h2>
             <p style={{ margin: 0, color: "rgba(239,232,216,.78)", lineHeight: 1.6 }}>Con vos y tu perro. {SITE.tagline.split(" en ")[0]}.</p>
           </div>
           <div className="col rv">

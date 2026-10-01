@@ -3,6 +3,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { Fragment, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { CATEGORIES, TAG_LABELS, formatPrice, type MenuItem, type Tag } from "@/data/menu";
+import { SplitText } from "@/components/split-text";
 import { norm, useSearch } from "@/lib/search-store";
 
 type View = "simple" | "lista" | "cards";
@@ -80,7 +81,7 @@ export function MenuSection() {
       <div className="wrap">
         <div className="menu-head rv">
           <p className="eyebrow">Carta completa</p>
-          <h2 className="serif grad-dark">Menú</h2>
+          <h2 className="serif"><SplitText text="Menú" grad dark /></h2>
           <p className="legend">
             <span>V vegano</span>
             <span>T sin TACC</span>

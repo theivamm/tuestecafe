@@ -171,7 +171,6 @@ mark{background:linear-gradient(100deg,#ffb000,#ff6a00);color:#1d1d1d;border-rad
 .it.cards{overflow:hidden}
 
 @media(max-width:720px){
-  .main-col #menu{order:-1;padding-top:28px}
   .top img{width:84px}
   .top{padding-top:20px;padding-bottom:12px}
   .bar-links{display:none}
@@ -186,3 +185,22 @@ mark{background:linear-gradient(100deg,#ffb000,#ff6a00);color:#1d1d1d;border-rad
   .aurora i,.grad,.hero-img *,.marquee .track{animation:none!important}
   .js .rv{opacity:1;transform:none;transition:none}
 }
+
+/* ===== v3: fondo gris, efectos en letras ===== */
+.aurora,.hero-img .glow{display:none}
+.split .sw{display:inline-block;white-space:nowrap}
+.split .ch{display:inline-block;transition:transform .7s cubic-bezier(.2,.8,.2,1),opacity .7s,color .2s;transition-delay:calc(var(--i)*30ms);cursor:default}
+.js .split:not(.in) .ch{opacity:0;transform:translateY(.7em) rotate(8deg)}
+.split.in .ch:hover{transform:translateY(-.14em) rotate(-4deg) scale(1.08);color:#ff8a2a;transition-delay:0s;transition-duration:.25s}
+.split.sg .ch{color:color-mix(in oklab,#ff6a00 calc(var(--i)/var(--n)*100%),#ffb000);animation:glowc 3.2s ease-in-out infinite;animation-delay:calc(var(--i)*120ms)}
+.split.sg.sd .ch{color:color-mix(in oklab,#ffa000 calc(var(--i)/var(--n)*100%),#c2410c)}
+.split.sg.in .ch:hover{color:#fff}
+@keyframes glowc{0%,100%{filter:none}50%{filter:brightness(1.3) drop-shadow(0 0 .35em rgba(255,140,40,.55))}}
+.bar-links a,.catnav a{position:relative}
+.bar-links a::after,.catnav a::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:2px;background:linear-gradient(90deg,#ffb000,#ff6a00);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.bar-links a:hover::after,.catnav a:hover::after{transform:scaleX(1)}
+.eyebrow{background:linear-gradient(90deg,currentColor 40%,#ff8a2a 50%,currentColor 60%) 0 0/250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sweep 5s linear infinite;opacity:.85}
+.menu .eyebrow{background-image:linear-gradient(90deg,#1d1d1d 40%,#ff6a00 50%,#1d1d1d 60%)}
+.hero .eyebrow,.barra .eyebrow{background-image:linear-gradient(90deg,#efe8d8 40%,#ff8a2a 50%,#efe8d8 60%)}
+@keyframes sweep{to{background-position:-250% 0}}
+@media(prefers-reduced-motion:reduce){.split.sg .ch,.eyebrow{animation:none!important}.js .split:not(.in) .ch{opacity:1;transform:none}}

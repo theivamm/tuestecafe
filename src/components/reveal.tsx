@@ -16,7 +16,7 @@ export function Reveal() {
         }),
       { threshold: 0.12 },
     );
-    document.querySelectorAll(".rv").forEach((el) => io.observe(el));
+    document.querySelectorAll(".rv, .split").forEach((el) => io.observe(el));
     return () => io.disconnect();
   }, []);
   return null;
