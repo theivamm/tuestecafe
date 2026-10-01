@@ -1,5 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { MenuSection } from "@/components/menu-section";
+import { Reveal } from "@/components/reveal";
+import { TopBar } from "@/components/top-bar";
 import { DELIVERIES, SITE } from "@/data/site";
 
 const VALUES = [
@@ -9,28 +11,30 @@ const VALUES = [
   ["Pets bienvenidos", "La barra los adopta a la primera."],
   ["A tu casa", "Rappi y Mercado Delivery."],
 ];
+const MARQUEE = ["Café de especialidad", "Tueste propio", "Brunch todo el día", "Pastelería de la casa", "Pets bienvenidos", "Caballito"];
 
 export default function Home() {
+  const words = SITE.claim.split(" ");
+  const last = words.pop();
   return (
     <>
+      <Reveal />
       <header className="top" id="top">
         <a href="#top">
           <img src="/img/logo.png" alt={SITE.name} />
         </a>
-        <nav>
-          <a href="#barra">La barra</a>
-          <a href="#menu">Menú</a>
-          <a href="#visita">Visitanos</a>
-        </nav>
       </header>
+      <TopBar />
 
-      <main>
+      <main className="main-col">
         <section className="wrap hero">
-          <div>
+          <div className="rv">
             <p className="eyebrow">
               {SITE.neighborhood.split(",")[0]} · {SITE.hours.days} {SITE.hours.time}
             </p>
-            <h1 className="serif">{SITE.claim}.</h1>
+            <h1 className="serif">
+              {words.join(" ")} <span className="grad">{last}.</span>
+            </h1>
             <p className="lead">
               Primer café de la cuadra. Tueste propio, brunch recién hecho y un lugar para quedarse un rato largo, con tu
               mejor amigo.
@@ -40,16 +44,25 @@ export default function Home() {
               <a className="btn" href={SITE.mapsShortUrl} target="_blank" rel="noreferrer">Cómo llegar</a>
             </div>
           </div>
-          <div className="hero-img">
+          <div className="hero-img rv">
+            <div className="glow" />
             <img className="main" src="/img/hero-02.jpg" alt="Barra de Tueste" />
             <img className="sub" src="/img/hero-04.jpg" alt="Café servido" />
           </div>
         </section>
 
+        <div className="marquee" aria-hidden="true">
+          <div className="track">
+            {[...MARQUEE, ...MARQUEE, ...MARQUEE, ...MARQUEE].map((t, i) => (
+              <span key={i} className="serif">{t}<i>✦</i></span>
+            ))}
+          </div>
+        </div>
+
         <section className="values">
           <div className="wrap">
             {VALUES.map(([t, c]) => (
-              <div key={t}>
+              <div key={t} className="rv">
                 <b>{t}</b>
                 <span>{c}</span>
               </div>
@@ -58,13 +71,13 @@ export default function Home() {
         </section>
 
         <section id="barra" className="wrap barra">
-          <div className="pics">
+          <div className="pics rv">
             <img src="/img/espresso-03.jpg" alt="Espresso" />
             <img src="/img/coffee-08.jpg" alt="Café filtrado" />
           </div>
-          <div>
+          <div className="rv">
             <p className="eyebrow">La barra</p>
-            <h2 className="serif">Specialties, sin apuro.</h2>
+            <h2 className="serif">Specialties, <span className="grad">sin apuro.</span></h2>
             <p className="t">
               Tueste propio en casa. Cada lote se muele según el método que vas a usar: V60, Chemex o Aeropress. En barra
               te preguntamos cómo lo tomás y te armamos el café como corresponde.
@@ -75,15 +88,15 @@ export default function Home() {
         <MenuSection />
 
         <section id="visita" className="wrap visita">
-          <div>
-            <h2 className="serif">Pasá por Caballito.</h2>
+          <div className="rv">
+            <h2 className="serif">Pasá por <span className="grad">Caballito.</span></h2>
             <p style={{ margin: 0, color: "rgba(239,232,216,.78)", lineHeight: 1.6 }}>Con vos y tu perro. {SITE.tagline.split(" en ")[0]}.</p>
           </div>
-          <div className="col">
+          <div className="col rv">
             <div><small>Dirección</small>{SITE.address.street}, {SITE.address.postalCode} {SITE.address.city}</div>
             <div><small>Horario</small>{SITE.hours.days} · {SITE.hours.time}</div>
           </div>
-          <div className="col">
+          <div className="col rv">
             <div><small>Envíos</small>{DELIVERIES.map((d) => d.name).join(" · ")}</div>
             <div>
               <small>Seguinos</small>

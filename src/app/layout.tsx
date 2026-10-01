@@ -63,6 +63,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="es-AR" className={`${serif.variable} ${sans.variable} ${mono.variable}`}>
       <body>
+        <div className="aurora" aria-hidden="true"><i /><i /><i /><i /></div>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         {children}
       </body>

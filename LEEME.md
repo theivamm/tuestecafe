@@ -6,5 +6,6 @@
 4. Ejecutá `npm run dev`.
 
 Archivos que se reemplazan: `src/app/page.tsx`, `src/app/layout.tsx`, `src/app/globals.css`.
-Archivo nuevo: `src/components/menu-section.tsx`.
+Archivos nuevos: `src/components/menu-section.tsx`, `top-bar.tsx`, `reveal.tsx` y `src/lib/search-store.ts`.
+También se reemplaza `src/app/layout.tsx` (agrega el fondo degradé animado).
 Los componentes viejos (hero, nav, footer, menu-explorer, liquid-backdrop…) quedan sin usarse; podés borrarlos cuando quieras.
